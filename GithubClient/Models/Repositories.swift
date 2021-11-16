@@ -9,7 +9,6 @@ import Foundation
 
 typealias Repositories = [Repository]
 
-
 // MARK: - Repository
 struct Repository: Codable {
     let id: Int?
