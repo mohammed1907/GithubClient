@@ -1,0 +1,17 @@
+line_length:
+  warning: 140
+  error: 150
+  ignores_function_declarations: true
+  ignores_comments: true
+  ignores_urls: true
+
+identifier_name:
+  max_length:
+    error: 60
+  min_length:
+    error: 3
+  excluded:
+    - id
+    - url
+    - key
+    - ID
