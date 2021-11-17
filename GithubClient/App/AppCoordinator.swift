@@ -25,8 +25,7 @@ class AppCoordinator: BaseCoordinator<Void> {
         }
 
         let navigationController = UINavigationController(rootViewController: viewController)
-
-        let repositoriesCoordinator = RepositoriesCoordinator(viewController: navigationController.viewControllers[0])
+        let repositoriesCoordinator = RepositoriesCoordinator(viewController: navigationController.viewControllers[0], viewModel: viewModel)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
 

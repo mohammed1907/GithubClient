@@ -6,8 +6,12 @@
 //
 
 import Foundation
+import RxSwift
 
 struct RepoViewModel {
+
+    let didClose = PublishSubject<Void>()
+
     let id: Int
     let name: String
     let avatar: String
