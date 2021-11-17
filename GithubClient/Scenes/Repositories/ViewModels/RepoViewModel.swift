@@ -21,7 +21,7 @@ struct RepoViewModel {
         self.id = repository.id ?? 0
         self.name = repository.name ?? ""
         self.avatar = repository.owner?.avatarURL ?? ""
-        self.date = repository.createdAt ?? ""
+        self.date = repository.createdAt?.formatedShortDate ?? ""
         self.ownerName = repository.owner?.login ?? ""
     }
 }
