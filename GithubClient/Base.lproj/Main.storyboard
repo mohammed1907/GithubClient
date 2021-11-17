@@ -16,13 +16,36 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iQN-v5-LXj">
+                                <rect key="frame" x="0.0" y="95" width="414" height="801"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="vn6-EN-uMC">
+                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iQN-v5-LXj" secondAttribute="trailing" id="3aK-BL-1Nf"/>
+                            <constraint firstAttribute="bottom" secondItem="iQN-v5-LXj" secondAttribute="bottom" id="44p-Qb-YyQ"/>
+                            <constraint firstItem="vn6-EN-uMC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4wZ-oV-9FG"/>
+                            <constraint firstItem="iQN-v5-LXj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CtS-m0-EEf"/>
+                            <constraint firstItem="vn6-EN-uMC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Q6X-9p-buv"/>
+                            <constraint firstItem="vn6-EN-uMC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="V0I-WK-5E5"/>
+                            <constraint firstItem="iQN-v5-LXj" firstAttribute="top" secondItem="vn6-EN-uMC" secondAttribute="bottom" id="nVP-cR-cFm"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="vn6-EN-uMC" id="v5R-42-Vxp"/>
+                        <outlet property="tableView" destination="iQN-v5-LXj" id="N8a-PD-e1G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="103" y="106"/>
+            <point key="canvasLocation" x="102.89855072463769" y="105.80357142857143"/>
         </scene>
     </scenes>
     <resources>

@@ -12,6 +12,7 @@ struct Config {
 
     struct EndpointPath {
         static let getRepositories = "repositories"
+        static let searchRepo = "search/repositories"
     }
 }
 enum HTTPHeaderField: String {

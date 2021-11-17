@@ -75,8 +75,9 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="creationDate" destination="b1L-XK-iOI" id="nj4-rF-a2o"/>
-                <outlet property="repoName" destination="vlj-Qh-7Jq" id="Tdr-c5-1sv"/>
+                <outlet property="repoName" destination="FRe-MI-no3" id="RRC-d7-5Hv"/>
                 <outlet property="repoOwnerImage" destination="FHv-75-lKK" id="WzB-vj-tGV"/>
+                <outlet property="repoOwnerName" destination="vlj-Qh-7Jq" id="tk8-om-XS7"/>
             </connections>
             <point key="canvasLocation" x="-130" y="144"/>
         </tableViewCell>

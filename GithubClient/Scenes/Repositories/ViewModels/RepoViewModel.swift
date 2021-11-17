@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct RepoViewModel {
+    let id: Int
+    let name: String
+
+    init(repository: Repository) {
+        self.id = repository.id ?? 0
+        self.name = repository.name ?? ""
+    }
+}

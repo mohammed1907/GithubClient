@@ -11,19 +11,41 @@ import RxCocoa
 
 class RepositoryListViewModel {
 
-    let service: RepositoriesService!
+    private let service: RepositoriesService!
     private let disposeBag = DisposeBag()
+    private let _reposSubject = PublishSubject<[RepoViewModel]>()
+    let searchText = BehaviorRelay<String>(value: "")
+
+    var repositories: Observable<[RepoViewModel]>
 
     init(service: RepositoriesService) {
         self.service = service
+        self.repositories = _reposSubject.asObserver()
+
+        searchText.map { $0 }
+        .filter({ $0.count > 1 })
+        .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+        .distinctUntilChanged()
+        .subscribe { query in
+            service.searchRepositories(key: query)
+                .subscribe { [weak self] repos in
+                    guard let self = self else { return }
+                    let repoViewModel = repos.items.compactMap { RepoViewModel(repository: $0) }
+                    self._reposSubject.onNext(repoViewModel)
+                } onError: { error in
+                    print(error)
+                }.disposed(by: self.disposeBag)
+        }.disposed(by: disposeBag)
     }
 
     func start() {
         service.getRepositories()
-            .subscribe { repos in
-                print(repos.map { $0.name })
-        } onError: { error in
-            print(error)
-        }.disposed(by: disposeBag)
+            .subscribe { [weak self] repos in
+                guard let self = self else { return }
+                let repoViewModel = repos.compactMap { RepoViewModel(repository: $0) }
+                self._reposSubject.onNext(repoViewModel)
+            } onError: { error in
+                print(error)
+            }.disposed(by: disposeBag)
     }
 }

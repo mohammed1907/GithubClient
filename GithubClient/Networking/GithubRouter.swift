@@ -11,11 +11,12 @@ enum GithubRouter {
 
     // MARK: - Endpoints
     case getRepos
+    case search(key: String)
 
     // MARK: - Properties
     var method: HTTPMethod {
         switch self {
-        case .getRepos:
+        default:
             return .get
         }
     }
@@ -24,12 +25,20 @@ enum GithubRouter {
         switch self {
         case .getRepos:
             return Config.EndpointPath.getRepositories
-
+        case .search:
+            return Config.EndpointPath.searchRepo
         }
     }
 
     var parameters: [String: Any]? {
         switch self {
+        case .search(let searchKey):
+            let parameters: [String: Any] = ["q": "\(searchKey)",
+                              "sort": "stars",
+                              "order": "desc",
+                              "per_page": 10]
+
+            return parameters
         default:
             return nil
         }
@@ -37,10 +46,19 @@ enum GithubRouter {
 
     // MARK: - Methods
     func asURLRequest() throws -> URLRequest {
-        guard let baseURL = URL(string: Config.baseURL) else { throw NetworkError.notFound }
-        var urlRequest = URLRequest(url: baseURL.appendingPathComponent(path))
+        let endpointPath: String = "\(Config.baseURL)\(path)"
+        var components = URLComponents(string: endpointPath)
+        var urlRequest = URLRequest(url: (components?.url)!)
+        components?.queryItems = []
         urlRequest.httpMethod = method.rawValue
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
+        if parameters != nil {
+            components?.queryItems?.append(contentsOf: parameters!.map { (key, value) in
+                URLQueryItem(name: key, value: value as? String)
+            })
+        }
+        urlRequest.url = components?.url
+
         return urlRequest
     }
 }
