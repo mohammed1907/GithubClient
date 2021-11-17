@@ -35,7 +35,7 @@ class RepositoryListViewModel {
                     return .just([])
                 }
                 return self.service.searchRepositories(key: query)
-                    .catch { error in
+                    .catch { _ in
                         return Observable.empty()
                     }.map {
                         let repoItems = $0.items.compactMap { RepoViewModel(repository: $0) }

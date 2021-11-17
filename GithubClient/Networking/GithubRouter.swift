@@ -36,7 +36,7 @@ enum GithubRouter {
                               "per_page": 10]
 
             return parameters
-  
+
         }
     }
 

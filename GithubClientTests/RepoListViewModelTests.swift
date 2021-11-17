@@ -39,5 +39,5 @@ class RepoListViewModelTests: XCTestCase {
     func test_title_emits_correctTitle() throws {
         XCTAssertEqual(try sut.title.toBlocking().first(), "Repositories")
     }
-    
+
 }
