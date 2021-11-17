@@ -32,7 +32,6 @@ final class RepositoriesViewController: UIViewController {
         setupUI()
         configureTableView()
         setupBindings()
-        viewModel.start()
     }
 
 }
@@ -73,6 +72,10 @@ private extension RepositoriesViewController {
 
 private extension RepositoriesViewController {
     func setupBindings() {
+        viewModel.title
+            .bind(to: self.rx.title)
+            .disposed(by: disposebag)
+
         _ = searchBar.rx.text.orEmpty
             .bind(to: viewModel.searchText)
             .disposed(by: disposebag)

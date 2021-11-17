@@ -16,6 +16,8 @@ class RepositoryListViewModel {
     private let _reposSubject = PublishSubject<[RepoViewModel]>()
     let searchText = BehaviorRelay<String>(value: "")
 
+    let title = BehaviorRelay<String>(value: "Repositories")
+
     let selectedRepo = PublishSubject<RepoViewModel>()
 
     var repositories: Observable<[RepoViewModel]>
@@ -23,31 +25,22 @@ class RepositoryListViewModel {
     init(service: RepositoriesService) {
         self.service = service
         self.repositories = _reposSubject.asObserver()
-
-        searchText.map { $0 }
-        .filter({ $0.count > 1 })
-        .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
-        .distinctUntilChanged()
-        .subscribe { query in
-            service.searchRepositories(key: query)
-                .subscribe { [weak self] repos in
-                    guard let self = self else { return }
-                    let repoViewModel = repos.items.compactMap { RepoViewModel(repository: $0) }
-                    self._reposSubject.onNext(repoViewModel)
-                } onError: { error in
-                    print(error)
-                }.disposed(by: self.disposeBag)
-        }.disposed(by: disposeBag)
-    }
-
-    func start() {
-        service.getRepositories()
-            .subscribe { [weak self] repos in
-                guard let self = self else { return }
-                let repoViewModel = repos.compactMap { RepoViewModel(repository: $0) }
-                self._reposSubject.onNext(repoViewModel)
-            } onError: { error in
-                print(error)
-            }.disposed(by: disposeBag)
+        self.repositories = searchText.map { $0 }
+            .filter({ $0.count > 1 })
+            .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .flatMapLatest { [weak self] query -> Observable<[RepoViewModel]> in
+                guard let self =  self else { return .just([]) }
+                if query.isEmpty {
+                    return .just([])
+                }
+                return self.service.searchRepositories(key: query)
+                    .catch { _ in
+                        return Observable.empty()
+                    }.map {
+                        let repoItems = $0.items.compactMap { RepoViewModel(repository: $0) }
+                        return repoItems
+                    }
+            }
     }
 }

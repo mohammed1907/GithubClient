@@ -11,7 +11,6 @@ struct Config {
     static let baseURL: String = "https://api.github.com/"
 
     struct EndpointPath {
-        static let getRepositories = "repositories"
         static let searchRepo = "search/repositories"
     }
 }

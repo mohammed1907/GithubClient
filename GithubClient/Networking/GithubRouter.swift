@@ -10,7 +10,6 @@ import Foundation
 enum GithubRouter {
 
     // MARK: - Endpoints
-    case getRepos
     case search(key: String)
 
     // MARK: - Properties
@@ -23,8 +22,6 @@ enum GithubRouter {
 
     var path: String {
         switch self {
-        case .getRepos:
-            return Config.EndpointPath.getRepositories
         case .search:
             return Config.EndpointPath.searchRepo
         }
@@ -39,8 +36,7 @@ enum GithubRouter {
                               "per_page": 10]
 
             return parameters
-        default:
-            return nil
+
         }
     }
 
