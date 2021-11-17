@@ -21,6 +21,12 @@
                                 <rect key="frame" x="0.0" y="95" width="414" height="801"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dlc-QR-xiu">
+                                <rect key="frame" x="16" y="438.5" width="382" height="19.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="vn6-EN-uMC">
                                 <rect key="frame" x="0.0" y="44" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -34,11 +40,15 @@
                             <constraint firstItem="vn6-EN-uMC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4wZ-oV-9FG"/>
                             <constraint firstItem="iQN-v5-LXj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CtS-m0-EEf"/>
                             <constraint firstItem="vn6-EN-uMC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Q6X-9p-buv"/>
+                            <constraint firstItem="Dlc-QR-xiu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="QZG-De-hSs"/>
                             <constraint firstItem="vn6-EN-uMC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="V0I-WK-5E5"/>
+                            <constraint firstItem="Dlc-QR-xiu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="a3v-ks-hJX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Dlc-QR-xiu" secondAttribute="trailing" constant="16" id="mKT-xz-ZW2"/>
                             <constraint firstItem="iQN-v5-LXj" firstAttribute="top" secondItem="vn6-EN-uMC" secondAttribute="bottom" id="nVP-cR-cFm"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="noDataLbl" destination="Dlc-QR-xiu" id="qOO-we-Jc6"/>
                         <outlet property="searchBar" destination="vn6-EN-uMC" id="v5R-42-Vxp"/>
                         <outlet property="tableView" destination="iQN-v5-LXj" id="N8a-PD-e1G"/>
                     </connections>

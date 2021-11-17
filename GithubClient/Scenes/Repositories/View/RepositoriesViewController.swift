@@ -11,6 +11,7 @@ import RxCocoa
 
 final class RepositoriesViewController: UIViewController {
 
+    @IBOutlet weak var noDataLbl: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
 
@@ -30,7 +31,6 @@ final class RepositoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        configureTableView()
         setupBindings()
     }
 
@@ -79,6 +79,19 @@ private extension RepositoriesViewController {
         _ = searchBar.rx.text.orEmpty
             .bind(to: viewModel.searchText)
             .disposed(by: disposebag)
+        
+        viewModel.noDataText.bind(to: noDataLbl.rx.text).disposed(by: disposebag)
+
+        viewModel.loadingIndicator.subscribe(onNext: { (isLoading) in
+            DispatchQueue.main.async {
+                if isLoading {
+                    self.showBlockingLoading()
+                } else {
+                    self.hideBlockingLoading()
+                }
+            }
+
+        }).disposed(by: disposebag)
 
         viewModel.repositories
             .observe(on: MainScheduler.instance)
