@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iQN-v5-LXj">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iQN-v5-LXj">
                                 <rect key="frame" x="0.0" y="95" width="414" height="801"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -66,15 +66,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MT7-qL-RLC">
-                                <rect key="frame" x="107" y="104" width="200" height="200"/>
+                                <rect key="frame" x="24" y="104" width="366" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="9lJ-mG-Xzl"/>
-                                    <constraint firstAttribute="width" constant="200" id="k0d-XR-ybj"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Df-ag-7L0">
-                                <rect key="frame" x="16" y="320" width="382" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Df-ag-7L0">
+                                <rect key="frame" x="24" y="320" width="366" height="0.0"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -83,11 +82,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="MT7-qL-RLC" firstAttribute="top" secondItem="Yqh-Og-6no" secondAttribute="top" constant="16" id="DDD-DB-IiR"/>
+                            <constraint firstItem="MT7-qL-RLC" firstAttribute="leading" secondItem="Yqh-Og-6no" secondAttribute="leading" constant="24" id="DDd-So-Ld4"/>
                             <constraint firstItem="3Df-ag-7L0" firstAttribute="top" secondItem="MT7-qL-RLC" secondAttribute="bottom" constant="16" id="H9B-47-Etx"/>
+                            <constraint firstItem="3Df-ag-7L0" firstAttribute="leading" secondItem="MT7-qL-RLC" secondAttribute="leading" id="Mmg-X5-7ew"/>
                             <constraint firstItem="3Df-ag-7L0" firstAttribute="centerX" secondItem="gn4-NM-uaL" secondAttribute="centerX" id="eTO-TI-bnU"/>
-                            <constraint firstItem="Yqh-Og-6no" firstAttribute="trailing" secondItem="3Df-ag-7L0" secondAttribute="trailing" constant="16" id="eva-Bf-sNh"/>
-                            <constraint firstItem="3Df-ag-7L0" firstAttribute="leading" secondItem="Yqh-Og-6no" secondAttribute="leading" constant="16" id="hPV-as-0sS"/>
                             <constraint firstItem="MT7-qL-RLC" firstAttribute="centerX" secondItem="gn4-NM-uaL" secondAttribute="centerX" id="kmg-iJ-Uek"/>
+                            <constraint firstItem="Yqh-Og-6no" firstAttribute="trailing" secondItem="MT7-qL-RLC" secondAttribute="trailing" constant="24" id="wlF-lS-k6P"/>
+                            <constraint firstItem="3Df-ag-7L0" firstAttribute="trailing" secondItem="MT7-qL-RLC" secondAttribute="trailing" id="wxL-2V-Zbe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eno-V1-eE8"/>

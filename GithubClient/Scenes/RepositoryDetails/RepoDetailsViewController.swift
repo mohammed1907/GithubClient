@@ -42,5 +42,6 @@ private extension RepoDetailsViewController {
     func setupBindings() {
         self.navigationItem.title = viewModel.name
         self.repoName?.text = viewModel.name
+        self.repoAvatar.setImage(imageURL: viewModel.avatar)
     }
 }
