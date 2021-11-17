@@ -39,7 +39,6 @@ final class RepositoriesViewController: UIViewController {
 
 private extension RepositoriesViewController {
     func setupUI() {
-        self.navigationItem.title = "" // from viewmodel
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         configureTableView()
@@ -83,7 +82,9 @@ private extension RepositoriesViewController {
             .disposed(by: disposebag)
 
         // bind noDataLbl to handel empty result
-        viewModel.noDataText.bind(to: noDataLbl.rx.text).disposed(by: disposebag)
+        viewModel.noDataText
+            .bind(to: noDataLbl.rx.text)
+            .disposed(by: disposebag)
 
         // bind tableView to retreive data
         viewModel.repositories

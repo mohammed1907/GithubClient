@@ -11,15 +11,16 @@ import RxSwift
 @testable import GithubClient
 
 class RepoServiceMock: RepositoriesService {
+
     var didEnterSearchRepo = false
     var didEnterGetRepo = false
-    func searchRepositories(key: String) -> Observable<Repositories> {
-        didEnterSearchRepo = true
-        return Observable.empty()
-    }
 
-    func getRepositories() -> Observable<[Repository]> {
-        didEnterGetRepo = true
-        return Observable.empty()
+    var searchReturnValue: Observable<Repositories> = .empty()
+    var searchKeyArgument: String!
+
+    func searchRepositories(key: String) -> Observable<Repositories> {
+        searchKeyArgument = key
+        didEnterSearchRepo = true
+        return searchReturnValue
     }
 }
