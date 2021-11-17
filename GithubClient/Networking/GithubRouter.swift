@@ -35,7 +35,7 @@ enum GithubRouter {
         case .search(let searchKey):
             let parameters: [String: Any] = ["q": "\(searchKey)",
                               "sort": "stars",
-                              "order": "desc",
+                              "order": "asc",
                               "per_page": 10]
 
             return parameters

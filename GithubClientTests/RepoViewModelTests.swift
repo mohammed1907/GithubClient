@@ -48,7 +48,7 @@ class RepoViewModelTests: XCTestCase {
     }
 
     func test_repositoryCreationDate_equal_repositoryCreationDate() throws {
-        XCTAssertEqual(sut.date, "2013-11-04T01:59:19Z")
+        XCTAssertEqual(sut.date, "2013-11-04T01:59:19Z".formatedShortDate)
     }
 
 }

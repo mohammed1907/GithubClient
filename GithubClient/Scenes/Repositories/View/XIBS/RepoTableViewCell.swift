@@ -30,5 +30,7 @@ class RepoTableViewCell: UITableViewCell {
 private extension RepoTableViewCell {
     func setup() {
         repoName.text = viewModel.name
+        repoOwnerImage.setImage(imageURL: viewModel.avatar)
+        creationDate.text = viewModel.date
     }
 }
