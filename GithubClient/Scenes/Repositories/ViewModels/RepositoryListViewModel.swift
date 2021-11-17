@@ -15,6 +15,8 @@ class RepositoryListViewModel {
     private let disposeBag = DisposeBag()
     private let _reposSubject = PublishSubject<[RepoViewModel]>()
     let searchText = BehaviorRelay<String>(value: "")
+    
+    let title = BehaviorRelay<String>(value: "Repositories")
 
     let selectedRepo = PublishSubject<RepoViewModel>()
 

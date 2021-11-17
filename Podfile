@@ -11,7 +11,8 @@ target 'GithubClient' do
 
   target 'GithubClientTests' do
     inherit! :search_paths
-    # Pods for testing
+    pod 'RxBlocking'
+    pod 'RxTest'
   end
 end
 
