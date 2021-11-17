@@ -16,7 +16,7 @@ class RepoTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        selectionStyle = .none
     }
 
     var viewModel: RepoViewModel! {
@@ -30,6 +30,7 @@ class RepoTableViewCell: UITableViewCell {
 private extension RepoTableViewCell {
     func setup() {
         repoName.text = viewModel.name
+        repoOwnerName.text = viewModel.ownerName
         repoOwnerImage.setImage(imageURL: viewModel.avatar)
         creationDate.text = viewModel.date
     }

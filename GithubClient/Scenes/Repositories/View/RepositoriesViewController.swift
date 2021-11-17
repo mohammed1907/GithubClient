@@ -32,6 +32,7 @@ final class RepositoriesViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupBindings()
+        subscribeToLoading()
     }
 
 }
@@ -72,16 +73,31 @@ private extension RepositoriesViewController {
 
 private extension RepositoriesViewController {
     func setupBindings() {
+        //bind title
         viewModel.title
             .bind(to: self.rx.title)
             .disposed(by: disposebag)
-
+        //bind searchBar
         _ = searchBar.rx.text.orEmpty
             .bind(to: viewModel.searchText)
             .disposed(by: disposebag)
         
+        //bind noDataLbl to handel empty result
         viewModel.noDataText.bind(to: noDataLbl.rx.text).disposed(by: disposebag)
-
+        
+        //bind tableView to retreive data
+        viewModel.repositories
+            .observe(on: MainScheduler.instance)
+            .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier, cellType: RepoTableViewCell.self)) { _, viewModel, cell in
+                cell.viewModel = viewModel
+            }.disposed(by: disposebag)
+        
+        //bind tableView selection
+        tableView.rx.modelSelected(RepoViewModel.self)
+            .bind(to: viewModel.selectedRepo)
+            .disposed(by: disposebag)
+    }
+    func subscribeToLoading() {
         viewModel.loadingIndicator.subscribe(onNext: { (isLoading) in
             DispatchQueue.main.async {
                 if isLoading {
@@ -92,15 +108,6 @@ private extension RepositoriesViewController {
             }
 
         }).disposed(by: disposebag)
-
-        viewModel.repositories
-            .observe(on: MainScheduler.instance)
-            .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier, cellType: RepoTableViewCell.self)) { _, viewModel, cell in
-                cell.viewModel = viewModel
-            }.disposed(by: disposebag)
-
-        tableView.rx.modelSelected(RepoViewModel.self)
-            .bind(to: viewModel.selectedRepo)
-            .disposed(by: disposebag)
     }
+
 }
