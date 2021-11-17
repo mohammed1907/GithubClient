@@ -73,26 +73,26 @@ private extension RepositoriesViewController {
 
 private extension RepositoriesViewController {
     func setupBindings() {
-        //bind title
+        // bind title
         viewModel.title
             .bind(to: self.rx.title)
             .disposed(by: disposebag)
-        //bind searchBar
+        // bind searchBar
         _ = searchBar.rx.text.orEmpty
             .bind(to: viewModel.searchText)
             .disposed(by: disposebag)
-        
-        //bind noDataLbl to handel empty result
+
+        // bind noDataLbl to handel empty result
         viewModel.noDataText.bind(to: noDataLbl.rx.text).disposed(by: disposebag)
-        
-        //bind tableView to retreive data
+
+        // bind tableView to retreive data
         viewModel.repositories
             .observe(on: MainScheduler.instance)
             .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier, cellType: RepoTableViewCell.self)) { _, viewModel, cell in
                 cell.viewModel = viewModel
             }.disposed(by: disposebag)
-        
-        //bind tableView selection
+
+        // bind tableView selection
         tableView.rx.modelSelected(RepoViewModel.self)
             .bind(to: viewModel.selectedRepo)
             .disposed(by: disposebag)
