@@ -16,6 +16,8 @@ class RepositoryListViewModel {
     private let _reposSubject = PublishSubject<[RepoViewModel]>()
     let searchText = BehaviorRelay<String>(value: "")
 
+    let selectedRepo = PublishSubject<RepoViewModel>()
+
     var repositories: Observable<[RepoViewModel]>
 
     init(service: RepositoriesService) {

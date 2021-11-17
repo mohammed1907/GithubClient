@@ -82,5 +82,9 @@ private extension RepositoriesViewController {
             .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier, cellType: RepoTableViewCell.self)) { _, viewModel, cell in
                 cell.viewModel = viewModel
             }.disposed(by: disposebag)
+
+        tableView.rx.modelSelected(RepoViewModel.self)
+            .bind(to: viewModel.selectedRepo)
+            .disposed(by: disposebag)
     }
 }
