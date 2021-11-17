@@ -10,7 +10,6 @@ import RxSwift
 
 protocol RepositoriesService {
     func searchRepositories(key: String) -> Observable<Repositories>
-    func getRepositories() -> Observable<[Repository]>
 }
 
 class RepositoriesServiceImpl: RepositoriesService {
@@ -18,9 +17,5 @@ class RepositoriesServiceImpl: RepositoriesService {
 
     func searchRepositories(key: String) -> Observable<Repositories> {
         return service.fetchRequest(forRoute: .search(key: key))
-    }
-
-    func getRepositories() -> Observable<[Repository]> {
-        return service.fetchRequest(forRoute: .getRepos)
     }
 }
